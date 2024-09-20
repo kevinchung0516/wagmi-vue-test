@@ -1,0 +1,71 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // #值设置为true时，每次保存的时候自动格式化；值设置为false时，代码格式化请按shift+alt+F
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  // #每次保存的时候将代码按eslint格式进行修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "volar.inlayHints.eventArgumentInInlineHandlers": false,
+  // 添加 vue 支持
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "vue",
+    "html",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  //  #让prettier使用eslint的代码格式进行校验
+  // vscode 更新后已经统一使用editor.codeActionsOnsave
+  //  #去掉代码结尾的分号
+  "prettier.semi": true,
+  //  #使用带引号替代双引号
+  "prettier.singleQuote": false,
+  "prettier.tabWidth": 4,
+  //  #让函数(名)和后面的括号之间加个空格
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  // #这个按用户自身习惯选择
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  // #让vue中的js按"prettier"格式进行格式化
+  "vetur.format.defaultFormatter.js": "prettier",
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      // #vue组件中html代码格式化样式
+      "wrap_attributes": "auto", //"force-aligned", //也可以设置为“auto”，效果会不一样
+      "wrap_line_length": 12000,
+      "end_with_newline": false,
+      "semi": true,
+      "singleQuote": false
+    },
+    "prettier": {
+      "semi": true,
+      "singleQuote": false,
+      "trailingComma": "none"
+    }
+  },
+  "html.format.wrapAttributes": "force-aligned",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.useTabs": true,
+  "files.autoSave": "off",
+  "explorer.confirmDelete": false,
+  // "[javascript]": {
+  // 	"editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  } // 两个选择器中是否换行
+}
