@@ -1,30 +1,62 @@
 import { boot } from "quasar/wrappers";
 
 import { QueryClient, VueQueryPlugin } from "@tanstack/vue-query";
-import { WagmiPlugin, http, createConfig } from "@wagmi/vue";
-import { mainnet, arbitrum } from "@wagmi/vue/chains";
-import {
-  coinbaseWallet,
-  injected,
-  metaMask,
-  walletConnect,
-} from "@wagmi/vue/connectors";
+import { WagmiPlugin } from "@wagmi/vue";
+import { createAppKit } from "@reown/appkit/vue";
+import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 
-const config = createConfig({
-  chains: [mainnet, arbitrum],
-  connectors: [
-    coinbaseWallet(),
-    injected(),
-    metaMask(),
-    walletConnect({
-      projectId: process.env.VUE_APP_PROJECT_ID,
-    }),
-  ],
-  transports: {
-    [mainnet.id]: http(),
-    [arbitrum.id]: http(),
-  },
+import {
+  mainnet,
+  base,
+  polygon,
+  binanceSmartChain,
+  optimism,
+  arbitrum,
+  zkSync,
+} from "@reown/appkit/networks";
+
+const projectId = process.env.VUE_APP_PROJECT_ID;
+
+const metadata = {
+  name: "test",
+  description: "test",
+  url: window.location.origin,
+  icons: [],
+};
+
+const networks = [
+  mainnet,
+  base,
+  polygon,
+  binanceSmartChain,
+  optimism,
+  arbitrum,
+  zkSync,
+];
+
+// 3. Create Wagmi Adapter
+const wagmiAdapter = new WagmiAdapter({
+  ssr: true,
+  projectId,
+  networks,
 });
+
+// // 4. Create modal
+createAppKit({
+  adapters: [wagmiAdapter],
+  networks: networks,
+  defaultNetwork: "",
+  metadata,
+  projectId,
+  features: {
+    analytics: false, // Optional - defaults to your Cloud configuration
+    email: false,
+    socials: [],
+  },
+  themeMode: "light",
+});
+
+const config = wagmiAdapter.wagmiConfig;
 
 const queryClient = new QueryClient();
 
